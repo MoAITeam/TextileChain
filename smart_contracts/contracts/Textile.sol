@@ -35,7 +35,7 @@ contract Textile {
 	}
 
 	modifier isNotFinalProduct(){
-		require(!is_final_product,'Product shoul be initialized');
+		require(!is_final_product,'Product should be initialized');
 		_;
 	}
 
