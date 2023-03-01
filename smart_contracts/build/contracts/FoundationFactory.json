@@ -1,0 +1,599 @@
+{
+  "contractName": "FoundationFactory",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "libraryAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_libraryAddress",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "newFoundation",
+          "type": "address"
+        }
+      ],
+      "name": "FoundationCreated",
+      "type": "event"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.26+commit.4563c3fc\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"libraryAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_libraryAddress\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"newFoundation\",\"type\":\"address\"}],\"name\":\"FoundationCreated\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/cloneFactory.sol\":\"FoundationFactory\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@optionality.io/clone-factory/contracts/CloneFactory.sol\":{\"keccak256\":\"0x6b7034420253542ae3235cb08e01dbe105eb6ec5c889dacfea0d2266f9a0bec6\",\"urls\":[\"bzzr://e213e28603899c591a3e1099014fe34b7a96cd69925d2a6e838806f81af8daff\"]},\"project:/contracts/cloneFactory.sol\":{\"keccak256\":\"0x2a23d455f57a32f5c90a79c62324a0164185f21fc13ef55aee6b9bf6bc51bf9c\",\"urls\":[\"bzzr://4eccc53f8f0cf911e583787bc5f14973a352464cc914baad882700aa7cb1c8d0\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051602080610117833981016040525160008054600160a060020a03909216600160a060020a031990921691909117905560c6806100516000396000f300608060405260043610603e5763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663b816f51381146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820293d0023742f3b30343b7d5d62b0538cde98558d925f27b25b3a426fa1deda2d0029",
+  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663b816f51381146043575b600080fd5b348015604e57600080fd5b506055607e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820293d0023742f3b30343b7d5d62b0538cde98558d925f27b25b3a426fa1deda2d0029",
+  "sourceMap": "133:246:3:-;;;272:104;8:9:-1;5:2;;;30:1;27;20:12;5:2;272:104:3;;;;;;;;;;;;;338:14;:32;;-1:-1:-1;;;;;338:32:3;;;-1:-1:-1;;;;;;338:32:3;;;;;;;;;133:246;;;;;;",
+  "deployedSourceMap": "133:246:3:-;;;;;;;;;;;;;;;;;;;;;;;183:29;;8:9:-1;5:2;;;30:1;27;20:12;5:2;183:29:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity >0.4.23 <0.9.0;\r\n//import \"./Foundation.sol\";\r\nimport \"@optionality.io/clone-factory/contracts/CloneFactory.sol\";\r\n\r\ncontract FoundationFactory is CloneFactory {\r\n\r\n  address public libraryAddress;\r\n\r\n  event FoundationCreated(address newFoundation);\r\n\r\n  function FoundationFactory(address _libraryAddress) public {\r\n    libraryAddress = _libraryAddress;\r\n  }\r\n}",
+  "sourcePath": "C:\\Users\\aleba\\Desktop\\TextileChain\\smart_contracts\\contracts\\cloneFactory.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/cloneFactory.sol",
+    "exportedSymbols": {
+      "FoundationFactory": [
+        370
+      ]
+    },
+    "id": 371,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 350,
+        "literals": [
+          "solidity",
+          ">",
+          "0.4",
+          ".23",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:3"
+      },
+      {
+        "absolutePath": "@optionality.io/clone-factory/contracts/CloneFactory.sol",
+        "file": "@optionality.io/clone-factory/contracts/CloneFactory.sol",
+        "id": 351,
+        "nodeType": "ImportDirective",
+        "scope": 371,
+        "sourceUnit": 35,
+        "src": "63:66:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 352,
+              "name": "CloneFactory",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 34,
+              "src": "163:12:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_CloneFactory_$34",
+                "typeString": "contract CloneFactory"
+              }
+            },
+            "id": 353,
+            "nodeType": "InheritanceSpecifier",
+            "src": "163:12:3"
+          }
+        ],
+        "contractDependencies": [
+          34
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 370,
+        "linearizedBaseContracts": [
+          370,
+          34
+        ],
+        "name": "FoundationFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 355,
+            "name": "libraryAddress",
+            "nodeType": "VariableDeclaration",
+            "scope": 370,
+            "src": "183:29:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 354,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:7:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 359,
+            "name": "FoundationCreated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 358,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 357,
+                  "indexed": false,
+                  "name": "newFoundation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 359,
+                  "src": "243:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 356,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "243:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "242:23:3"
+            },
+            "src": "219:47:3"
+          },
+          {
+            "body": {
+              "id": 368,
+              "nodeType": "Block",
+              "src": "331:45:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 366,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 364,
+                      "name": "libraryAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 355,
+                      "src": "338:14:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 365,
+                      "name": "_libraryAddress",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 361,
+                      "src": "355:15:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "338:32:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 367,
+                  "nodeType": "ExpressionStatement",
+                  "src": "338:32:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 369,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "FoundationFactory",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 362,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 361,
+                  "name": "_libraryAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 369,
+                  "src": "299:23:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 360,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "299:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "298:25:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 363,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "331:0:3"
+            },
+            "scope": 370,
+            "src": "272:104:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 371,
+        "src": "133:246:3"
+      }
+    ],
+    "src": "0:379:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/cloneFactory.sol",
+      "exportedSymbols": {
+        "FoundationFactory": [
+          370
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">",
+            "0.4",
+            ".23",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 350,
+        "name": "PragmaDirective",
+        "src": "0:31:3"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 35,
+          "absolutePath": "@optionality.io/clone-factory/contracts/CloneFactory.sol",
+          "file": "@optionality.io/clone-factory/contracts/CloneFactory.sol",
+          "scope": 371,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 351,
+        "name": "ImportDirective",
+        "src": "63:66:3"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            34
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            370,
+            34
+          ],
+          "name": "FoundationFactory",
+          "scope": 371
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "CloneFactory",
+                  "referencedDeclaration": 34,
+                  "type": "contract CloneFactory"
+                },
+                "id": 352,
+                "name": "UserDefinedTypeName",
+                "src": "163:12:3"
+              }
+            ],
+            "id": 353,
+            "name": "InheritanceSpecifier",
+            "src": "163:12:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "libraryAddress",
+              "scope": 370,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 354,
+                "name": "ElementaryTypeName",
+                "src": "183:7:3"
+              }
+            ],
+            "id": 355,
+            "name": "VariableDeclaration",
+            "src": "183:29:3"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "FoundationCreated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "newFoundation",
+                      "scope": 359,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 356,
+                        "name": "ElementaryTypeName",
+                        "src": "243:7:3"
+                      }
+                    ],
+                    "id": 357,
+                    "name": "VariableDeclaration",
+                    "src": "243:21:3"
+                  }
+                ],
+                "id": 358,
+                "name": "ParameterList",
+                "src": "242:23:3"
+              }
+            ],
+            "id": 359,
+            "name": "EventDefinition",
+            "src": "219:47:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "FoundationFactory",
+              "payable": false,
+              "scope": 370,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_libraryAddress",
+                      "scope": 369,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 360,
+                        "name": "ElementaryTypeName",
+                        "src": "299:7:3"
+                      }
+                    ],
+                    "id": 361,
+                    "name": "VariableDeclaration",
+                    "src": "299:23:3"
+                  }
+                ],
+                "id": 362,
+                "name": "ParameterList",
+                "src": "298:25:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 363,
+                "name": "ParameterList",
+                "src": "331:0:3"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 355,
+                              "type": "address",
+                              "value": "libraryAddress"
+                            },
+                            "id": 364,
+                            "name": "Identifier",
+                            "src": "338:14:3"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 361,
+                              "type": "address",
+                              "value": "_libraryAddress"
+                            },
+                            "id": 365,
+                            "name": "Identifier",
+                            "src": "355:15:3"
+                          }
+                        ],
+                        "id": 366,
+                        "name": "Assignment",
+                        "src": "338:32:3"
+                      }
+                    ],
+                    "id": 367,
+                    "name": "ExpressionStatement",
+                    "src": "338:32:3"
+                  }
+                ],
+                "id": 368,
+                "name": "Block",
+                "src": "331:45:3"
+              }
+            ],
+            "id": 369,
+            "name": "FunctionDefinition",
+            "src": "272:104:3"
+          }
+        ],
+        "id": 370,
+        "name": "ContractDefinition",
+        "src": "133:246:3"
+      }
+    ],
+    "id": 371,
+    "name": "SourceUnit",
+    "src": "0:379:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.26+commit.4563c3fc.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.11",
+  "updatedAt": "2023-03-01T10:13:16.244Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

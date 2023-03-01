@@ -1,4 +1,4 @@
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.4.23 <0.9.0;
 
 contract Textile {
 
@@ -15,7 +15,7 @@ contract Textile {
 	bool private is_final_product = false;
 
 
-	constructor(){
+	constructor() public {
 		is_init = true;
 	}
 
@@ -47,7 +47,7 @@ contract Textile {
 
 	event productExchanged(address previous_address, address current_address);
 
-    function init(address _current_owner, string calldata _product_name, string calldata _factory_name, string calldata _factory_location, string calldata _factory_date) external notInit {
+    function init(address _current_owner, string _product_name, string _factory_name, string _factory_location, string _factory_date) external notInit {
         product_name = _product_name;
 		current_owner = _current_owner;
 		factory_name = _factory_name;
@@ -66,6 +66,11 @@ contract Textile {
 
 	}
 
+	
+    function getName() external view returns(string memory){
+        return product_name;
+    }
+
 	function addComponent(address component) external onlyOwner isNotFinalProduct {
 
 		textile_components.push(component);
@@ -83,5 +88,21 @@ contract Textile {
 
 	function getProductDetails() external view returns(string memory, address, string memory, string memory, string memory){
         return (product_name,manufacturer,factory_name,factory_location,factory_date);
+    }
+
+	    function getManufacturer() external view returns(address, string memory){
+        return (manufacturer, factory_name);
+    }
+
+    function getProductionLocation() external view returns(string memory){
+        return factory_location;
+    }
+
+    function getProductionDate() external view returns(string memory){
+        return factory_date;
+    }
+
+    function getComponents() external view returns(address[] memory){
+        return textile_components;
     }
 } 

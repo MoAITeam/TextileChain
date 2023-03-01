@@ -1,8 +1,7 @@
 import 'persistence_service.dart';
 import '../setup/locator.dart';
 
-class ProductsPersistenceService {
-
+class TextileFirebaseService {
   final PersistenceService _persistenceService =
       serviceLocator<PersistenceService>();
 
@@ -23,7 +22,7 @@ class ProductsPersistenceService {
         await _persistenceService.getElementsFromDocument('users', userAddress);
 
     if (snapshot.exists) {
-      List<dynamic> products = snapshot.data()!['products'];
+      List<dynamic> products = snapshot.data()['products'];
 
       return products.map<String>((item) => item.toString()).toList();
     } else {
