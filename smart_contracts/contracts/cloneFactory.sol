@@ -16,7 +16,7 @@ contract TextileFactory is CloneFactory {
     libraryAddress = _libraryAddress;
   }
 
-  function createTextileFactory(string _name, string  _factory_name, string  _factory_location, string  _factory_date) public {
+  function createTextile(string _name, string  _factory_name, string  _factory_location, string  _factory_date) public {
     address clone = createClone(libraryAddress);
     Textile(clone).init(msg.sender, _name, _factory_name, _factory_location, _factory_date);
     emit TextileCreated(clone);

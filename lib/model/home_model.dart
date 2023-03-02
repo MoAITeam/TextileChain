@@ -5,6 +5,9 @@ import '../service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../service/persistence_service.dart';
+import '../service/textile_firebase_service.dart';
+
 class HomeViewModel extends ChangeNotifier {
   final AuthService _authService = serviceLocator<AuthService>();
   bool _busy = false;
@@ -25,6 +28,9 @@ class HomeViewModel extends ChangeNotifier {
       showTextDialog(context, true, 'Error',
           'Something went wrong with your key. Try again!', null);
     } else {
+      //final TextileFirebaseService t = serviceLocator<TextileFirebaseService>();
+      final PersistenceService p = serviceLocator<PersistenceService>();
+      p.addElementToDocumentList('users', 'aaaa', 'products', 'bbbb');
       Navigator.pop(context);
     }
   }

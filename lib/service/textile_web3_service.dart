@@ -15,7 +15,7 @@ class TextileWeb3Service {
   DeployedContract _factoryT;
   DeployedContract _currentT;
 
-  void clearFactory() => _currentT = null;
+  void clearFactory() => _factoryT = null;
   void clearCurrentProduct() => _currentT = null;
 
   Future<void> setTextileFactory([String factoryAddress]) async {

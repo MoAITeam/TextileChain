@@ -1,5 +1,8 @@
+import 'add_textile.dart';
 import 'create_product.dart';
 import 'verify.dart';
+import 'add_textile.dart';
+
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -152,9 +155,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             await Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  /*builder: (context) =>
-                                            AddProductWidget(),*/
-                                                  ),
+                                                  builder: (context) =>
+                                                      AddTextileWidget()),
                                             );
                                           },
                                           text: 'Add',

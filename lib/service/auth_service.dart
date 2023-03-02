@@ -30,7 +30,9 @@ class AuthService {
 
     try {
       var cred = EthPrivateKey.fromHex(key);
+      debugPrint(key);
       var addr = await cred.extractAddress();
+      debugPrint(addr.toString());
       _credentials = cred;
       _userAddress = addr;
       return true;

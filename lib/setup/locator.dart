@@ -1,3 +1,4 @@
+import 'package:codewords/service/textile_firebase_service.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/persistence_service.dart';
@@ -12,4 +13,7 @@ void setupLocator() {
   serviceLocator.registerSingletonWithDependencies<AuthService>(
       () => AuthService(),
       dependsOn: [PersistenceService]);
+
+  serviceLocator.registerSingletonWithDependencies<TextileFirebaseService>(
+      () => TextileFirebaseService());
 }

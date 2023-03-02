@@ -1,3 +1,6 @@
+import 'package:codewords/service/auth_service.dart';
+import 'package:codewords/service/persistence_service.dart';
+
 import 'create_product.dart';
 import 'verify.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
@@ -13,6 +16,7 @@ import 'setup/locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:convert/convert.dart';
 import 'home.dart';
+import "service/textile_firebase_service.dart";
 
 void main() async {
   await Firebase.initializeApp(
@@ -29,6 +33,7 @@ class MyApp extends StatelessWidget {
   //const MyApp({super.key});
 
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
