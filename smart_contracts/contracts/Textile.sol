@@ -20,7 +20,7 @@ contract Textile {
 	}
 
 	modifier notInit(){
-		require(is_init,'Product shoul be initialized');
+		require(!is_init,'Product shoul be initialized 0');
 		_;
 	}
 
@@ -30,24 +30,24 @@ contract Textile {
     }
 
 	modifier isFinalProduct(){
-		require(is_final_product,'Product shoul be initialized');
+		require(is_final_product,'Product shoul be initialized 1');
 		_;
 	}
 
 	modifier isNotFinalProduct(){
-		require(!is_final_product,'Product should be initialized');
+		require(!is_final_product,'Product should be initialized 2');
 		_;
 	}
 
 
 	modifier isNotConsumed(){
-		require(!is_component,'Product shoul be initialized');
+		require(!is_component,'Product shoul be initialized 3');
 		_;
 	}
 
 	event productExchanged(address previous_address, address current_address);
 
-    function init(address _current_owner, string _product_name, string _factory_name, string _factory_location, string _factory_date) external notInit {
+    function init(address _current_owner, string _product_name, string _factory_name, string _factory_location, string _factory_date) external  {
         product_name = _product_name;
 		current_owner = _current_owner;
 		factory_name = _factory_name;

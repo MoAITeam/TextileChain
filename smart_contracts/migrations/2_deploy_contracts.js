@@ -1,8 +1,7 @@
-const ConvertLib = artifacts.require("ConvertLib");
-const MetaCoin = artifacts.require("MetaCoin");
+const Textile = artifacts.require("Textile");
+const TextileFactory = artifacts.require("TextileFactory")
 
 module.exports = function(deployer) {
-  deployer.deploy(ConvertLib);
-  deployer.link(ConvertLib, MetaCoin);
-  deployer.deploy(MetaCoin);
+  deployer.deploy(Textile).then(() => deployer.deploy(TextileFactory,Textile.address));
+
 };

@@ -8,9 +8,9 @@ import '../setup/locator.dart';
 import '../service/auth_service.dart';
 
 class Web3Service {
-  static const String contractsPath = "smartcontract/build/contracts/";
-  static const String _rpcURL = "http://10.0.2.2:7545";
-  static const String _wsURL = "ws://10.0.2.2:7545/";
+  static const String contractsPath = "smart_contracts/build/contracts/";
+  static const String _rpcURL = "http://127.0.0.1:7545";
+  static const String _wsURL = "ws://127.0.0.1:7545/";
 
   final AuthService _authService = serviceLocator<AuthService>();
   final Web3Client web3Client;

@@ -35,11 +35,15 @@ class TextileWeb3Service {
 
   Future<String> createProduct(String name, String factoryName,
       String factoryLocation, String factoryDate) async {
-    return await _web3service.submitTransaction(_factoryT, 'createProduct',
+    var hash = await _web3service.submitTransaction(_factoryT, 'createTextile',
         [name, factoryName, factoryLocation, factoryDate]);
+    var address = await _web3service.extractEventDataFromReceipt(
+        _factoryT, 'TextileCreated', hash, 0);
+    return address[0].toString();
   }
 
   Future<String> getNewProductAddress(String transactionHash) async {
+    //TODO: ELIMINA
     var address = await _web3service.extractEventDataFromReceipt(
         _factoryT, 'TextileCreated', transactionHash, 0);
 

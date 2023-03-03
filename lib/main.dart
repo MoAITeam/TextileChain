@@ -1,5 +1,6 @@
 import 'package:codewords/service/auth_service.dart';
 import 'package:codewords/service/persistence_service.dart';
+import 'package:codewords/service/textile_web3_service.dart';
 
 import 'create_product.dart';
 import 'verify.dart';
@@ -26,13 +27,18 @@ void main() async {
   setupLocator();
   await serviceLocator.allReady();
 
-  runApp(MyApp());
+  runApp(await MyApp.init());
 }
 
 class MyApp extends StatelessWidget {
-  //const MyApp({super.key});
+  const MyApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
+
+  static Future<MyApp> init() async {
+    await serviceLocator<TextileWeb3Service>().setTextileFactory();
+    return const MyApp();
+  }
 
   @override
   Widget build(BuildContext context) {
