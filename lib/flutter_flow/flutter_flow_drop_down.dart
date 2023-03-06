@@ -22,8 +22,8 @@ class FlutterFlowDropDown extends StatefulWidget {
 
   final String initialOption;
   final String hintText;
-  final List<String> options;
-  final Function(String) onChanged;
+  final List<Object> options;
+  final Function(Object) onChanged;
   final Widget icon;
   final double width;
   final double height;
@@ -41,8 +41,8 @@ class FlutterFlowDropDown extends StatefulWidget {
 }
 
 class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
-  String dropDownValue;
-  List<String> get effectiveOptions =>
+  Object dropDownValue;
+  List<Object> get effectiveOptions =>
       widget.options.isEmpty ? ['[Option]'] : widget.options;
 
   @override
@@ -53,16 +53,16 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    final dropdownWidget = DropdownButton<String>(
+    final dropdownWidget = DropdownButton<Object>(
       value: effectiveOptions.contains(dropDownValue) ? dropDownValue : null,
       hint: widget.hintText != null
           ? Text(widget.hintText, style: widget.textStyle)
           : null,
       items: effectiveOptions
-          .map((e) => DropdownMenuItem(
+          .map((e) => DropdownMenuItem<Object>(
                 value: e,
                 child: Text(
-                  e,
+                  e.toString(),
                   style: widget.textStyle,
                 ),
               ))

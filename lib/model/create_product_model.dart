@@ -5,6 +5,15 @@ import 'package:flutter/material.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../service/textile_firebase_service.dart';
 
+class QueryResultForDropdown{
+  String address;
+  String displayText;
+
+  @override String toString() {
+    return displayText;
+  }
+}
+
 class CreateProductModel extends ChangeNotifier {
   final TextileFirebaseService _textileFirebaseService =
       serviceLocator<TextileFirebaseService>();
@@ -12,8 +21,8 @@ class CreateProductModel extends ChangeNotifier {
       serviceLocator<TextileWeb3Service>();
   final AuthService _authService = serviceLocator<AuthService>();
 
-  final Map<String, String> _userTextiles = {};
-  Map<String, String> get userProducts => _userTextiles;
+  final Map<String, QueryResultForDropdown> _userTextiles = {};
+  Map<String, QueryResultForDropdown> get userProducts => _userTextiles;
 
   void showTextDialog(BuildContext context, bool isDismissible, String title,
       String content, List<Widget> buttonList) {
@@ -46,11 +55,16 @@ class CreateProductModel extends ChangeNotifier {
 
     for (String constituent in constituents) {
       await _textileWeb3Service.setCurrentTextile(constituent);
-      _userTextiles[constituent] = await _textileWeb3Service.getName();
-      _userTextiles[constituent] = _userTextiles[constituent] +
-          '                       [' +
+      QueryResultForDropdown result = new QueryResultForDropdown();
+      result.displayText =  await _textileWeb3Service.getName() + '[' +
           constituent.substring(constituent.length - 6) +
           ']';
+      result.address = constituent;
+      _userTextiles[constituent] = result;
+      /*_userTextiles[constituent] = _userTextiles[constituent] +
+          '                       [' +
+          constituent.substring(constituent.length - 6) +
+          ']';*/
       _textileWeb3Service.clearCurrentProduct();
     }
 
@@ -73,7 +87,7 @@ class CreateProductModel extends ChangeNotifier {
 
       await _textileWeb3Service.setCurrentTextile(address);
 
-      //await _textileWeb3Service.addComponent();
+      await _textileWeb3Service.addComponent(textile);
 
       showTextDialog(context, false, 'Success!',
           'Your product was added to the blockchain', [

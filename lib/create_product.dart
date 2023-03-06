@@ -26,7 +26,7 @@ class _CreateProductWidgetState extends State<CreateProductWidget> {
   TextEditingController textController2 = TextEditingController();
   TextEditingController textController3 = TextEditingController();
   DateTime datePicked;
-  String dropDownTextile;
+  QueryResultForDropdown dropDownTextile;
   String dropDownGarment;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -372,9 +372,10 @@ class _CreateProductWidgetState extends State<CreateProductWidget> {
                                         onPressed: () {
                                           model.createFinalProduct(
                                               dropDownGarment,
-                                              dropDownTextile,
+                                              dropDownTextile.address,
                                               textController1.text, // location
-                                              datePicked.toString());
+                                              datePicked.toString(),
+                                              context);
                                         },
                                         text: 'Insert garment in blockchain',
                                         options: FFButtonOptions(
