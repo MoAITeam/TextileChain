@@ -33,6 +33,11 @@ class TextileWeb3Service {
         _currentT, "addComponent", [EthereumAddress.fromHex(componentAddress)]);
   }
 
+  Future<String> markAsFinalProduct() async {
+    return await _web3service
+        .submitTransaction(_currentT, "finalProduct", []);
+  }
+
   Future<String> createProduct(String name, String factoryName,
       String factoryLocation, String factoryDate) async {
     var hash = await _web3service.submitTransaction(_factoryT, 'createTextile',
@@ -82,11 +87,18 @@ class TextileWeb3Service {
     return response.first.map<String>((item) => item.toString()).toList();
   }
 
-  Future<String> getName() async {
-    List<dynamic> response =
+  Future<Map<String, String>> getProduct() async {
+    List<dynamic> response1 =
         await _web3service.queryContract(_currentT, "getName", []);
+    List<dynamic> response2 =
+        await _web3service.queryContract(_currentT, "getIsFinalProduct", []);
 
-    return response.first.toString();
+    Map<String, String> map = {};
+
+    map['product_name'] = response1.first.toString();
+    map['is_final_product'] = response2.first.toString();
+
+    return map;
   }
 
   Future<Map<String, String>> getProductDetails() async {

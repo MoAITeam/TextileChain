@@ -66,6 +66,10 @@ contract Textile {
 
 	}
 
+	function getIsFinalProduct() external view returns(bool final_product){
+		return is_final_product;
+	}
+
 	
     function getName() external view returns(string memory){
         return product_name;

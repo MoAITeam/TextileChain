@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+
 import 'persistence_service.dart';
 import '../setup/locator.dart';
 
@@ -9,6 +11,15 @@ class TextileFirebaseService {
       String userAddress, String elementAddress) async {
     await _persistenceService.addElementToDocumentList(
         'users', userAddress, 'products', elementAddress);
+  }
+
+  Future<void> sendQRCodeToStorage(qr) {
+    /*final qrcodeRef = storageRef.child("mountains.jpg");
+    try {
+      qrcodeRef.putString(qr, format: PutStringFormat.base64);
+    } on FirebaseException catch (e) {
+      // ...
+    }*/
   }
 
   Future<void> removeProductFromUser(

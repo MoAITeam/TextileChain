@@ -4,12 +4,15 @@ import 'package:codewords/setup/locator.dart';
 import 'package:flutter/material.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../service/textile_firebase_service.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'dart:convert';
+import 'dart:typed_data';
 
-class QueryResultForDropdown{
+class QueryResultForDropdown {
   String address;
   String displayText;
-
-  @override String toString() {
+  @override
+  String toString() {
     return displayText;
   }
 }
@@ -56,11 +59,14 @@ class CreateProductModel extends ChangeNotifier {
     for (String constituent in constituents) {
       await _textileWeb3Service.setCurrentTextile(constituent);
       QueryResultForDropdown result = new QueryResultForDropdown();
-      result.displayText =  await _textileWeb3Service.getName() + '[' +
+      Map<String, String> product = await _textileWeb3Service.getProduct();
+      result.displayText = product["product_name"] +
+          '[' +
           constituent.substring(constituent.length - 6) +
           ']';
+      String is_final = product["is_final_product"];
       result.address = constituent;
-      _userTextiles[constituent] = result;
+      if (is_final == "false") _userTextiles[constituent] = result;
       /*_userTextiles[constituent] = _userTextiles[constituent] +
           '                       [' +
           constituent.substring(constituent.length - 6) +
@@ -88,6 +94,14 @@ class CreateProductModel extends ChangeNotifier {
       await _textileWeb3Service.setCurrentTextile(address);
 
       await _textileWeb3Service.addComponent(textile);
+
+      await _textileWeb3Service.markAsFinalProduct();
+
+      QrCode qr = QrCode(4, QrErrorCorrectLevel.L)..addData(address);
+      final painter = QrPainter.withQr(qr: qr);
+      final picData = await painter.toImageData(10);
+      String base64String = base64.encode(picData.buffer.asUint8List());
+      _textileFirebaseService.sendQRCodeToStorage(qr);
 
       showTextDialog(context, false, 'Success!',
           'Your product was added to the blockchain', [
