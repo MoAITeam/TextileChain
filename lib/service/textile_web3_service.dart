@@ -28,14 +28,19 @@ class TextileWeb3Service {
         await _web3service.loadContract(productContractName, productAddress);
   }
 
+  Future<String> verifyContract(String address) async {
+    List<dynamic> response =
+        await _web3service.queryContract(_currentT, "getName", []);
+    return response.first.toString();
+  }
+
   Future<String> addComponent(String componentAddress) async {
     return await _web3service.submitTransaction(
         _currentT, "addComponent", [EthereumAddress.fromHex(componentAddress)]);
   }
 
   Future<String> markAsFinalProduct() async {
-    return await _web3service
-        .submitTransaction(_currentT, "finalProduct", []);
+    return await _web3service.submitTransaction(_currentT, "finalProduct", []);
   }
 
   Future<String> createProduct(String name, String factoryName,
