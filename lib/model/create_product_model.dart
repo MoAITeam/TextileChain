@@ -7,6 +7,7 @@ import '../service/textile_firebase_service.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:convert';
 import 'dart:typed_data';
+import 'dart:ui';
 
 class QueryResultForDropdown {
   String address;
@@ -67,10 +68,7 @@ class CreateProductModel extends ChangeNotifier {
       String is_final = product["is_final_product"];
       result.address = constituent;
       if (is_final == "false") _userTextiles[constituent] = result;
-      /*_userTextiles[constituent] = _userTextiles[constituent] +
-          '                       [' +
-          constituent.substring(constituent.length - 6) +
-          ']';*/
+
       _textileWeb3Service.clearCurrentProduct();
     }
 
@@ -97,11 +95,23 @@ class CreateProductModel extends ChangeNotifier {
 
       await _textileWeb3Service.markAsFinalProduct();
 
-      QrCode qr = QrCode(4, QrErrorCorrectLevel.L)..addData(address);
-      final painter = QrPainter.withQr(qr: qr);
-      final picData = await painter.toImageData(10);
+      final qrValidationResult = QrValidator.validate(
+        data: address,
+        version: QrVersions.auto,
+        errorCorrectionLevel: QrErrorCorrectLevel.L,
+      );
+      final qrCode = qrValidationResult.qrCode;
+      //QrCode qr = QrCode(4, QrErrorCorrectLevel.L)..addData(address);
+      final painter = QrPainter.withQr(
+          qr: qrCode,
+          color: Color.fromARGB(255, 0, 0, 0),
+          emptyColor: Color.fromARGB(255, 255, 255, 255),
+          gapless: true,
+          embeddedImageStyle: null,
+          embeddedImage: null,);
+      final picData = await painter.toImageData(2048, format: ImageByteFormat.png);
       String base64String = base64.encode(picData.buffer.asUint8List());
-      _textileFirebaseService.sendQRCodeToStorage(qr);
+      _textileFirebaseService.sendQRCodeToStorage(base64String,address);
 
       showTextDialog(context, false, 'Success!',
           'Your product was added to the blockchain', [
