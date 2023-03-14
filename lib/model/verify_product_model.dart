@@ -17,9 +17,16 @@ class VerifyProductModel extends ChangeNotifier {
   final TextileWeb3Service _textileWeb3Service =
       serviceLocator<TextileWeb3Service>();
   final AuthService _authService = serviceLocator<AuthService>();
+  bool _busy = false;
+  bool get busy => _busy;
 
   Map<String, String> _details;
   Map<String, String> get getDetails => _details;
+
+  void setBusy(bool value) {
+    _busy = value;
+    notifyListeners();
+  }
 
   void showTextDialog(BuildContext context, bool isDismissible, String title,
       String content, List<Widget> buttonList) {
@@ -49,6 +56,7 @@ class VerifyProductModel extends ChangeNotifier {
   }
 
   Future<void> verifyQRCode(context, qrcode) async {
+    setBusy(true);
     clearDetails();
     await _textileWeb3Service.setCurrentTextile(qrcode);
     print(_textileWeb3Service.currentT.address);
@@ -59,5 +67,6 @@ class VerifyProductModel extends ChangeNotifier {
       showTextDialog(context, true, 'Alert',
           'Cannot load the contract, the product scanned could be fake.', null);
     }
+    setBusy(false);
   }
 }

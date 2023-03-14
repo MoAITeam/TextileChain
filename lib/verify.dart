@@ -221,11 +221,18 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 10, 0, 0),
-                                          child: Text(
+                                          child: model.busy
+                                          ? const CircularProgressIndicator() :
+                                           model.getDetails.isNotEmpty
+                                          ? Text(
                                             model.getDetails.values.toList()[0],
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
-                                          ),
+                                          ):  const Center(
+                                        child: Text('No products to show',
+                                        style:
+                                         TextStyle(fontSize: 24.0)),
+                          ),
                                         ),
                                       ),
                                       Container(
@@ -240,7 +247,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 10, 0, 0),
                                           child: Text(
-                                            model.getDetails.toString(),
+                                            '',//model.getDetails.toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -255,7 +262,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                                       Container(
                                         child: FFButtonWidget(
                                           onPressed: () {
-                                            print(model);
+                                            print(model.getDetails);
                                           },
                                           text: 'Add',
                                           options: FFButtonOptions(
