@@ -14,6 +14,7 @@ class TextileWeb3Service {
 
   DeployedContract _factoryT;
   DeployedContract _currentT;
+  DeployedContract get currentT => _currentT;
 
   void clearFactory() => _factoryT = null;
   void clearCurrentProduct() => _currentT = null;
@@ -24,14 +25,26 @@ class TextileWeb3Service {
   }
 
   Future<void> setCurrentTextile(String productAddress) async {
-    _currentT =
-        await _web3service.loadContract(productContractName, productAddress);
+    try {
+      _currentT =
+          await _web3service.loadContract(productContractName, productAddress);
+      print(currentT);
+    } catch (e) {
+      print('cant load contract');
+    }
   }
 
-  Future<String> verifyContract(String address) async {
+  Future<Map<String, String>> verifyContract(String address) async {
     List<dynamic> response =
-        await _web3service.queryContract(_currentT, "getName", []);
-    return response.first.toString();
+        await _web3service.queryContract(_currentT, "getProductDetails", []);
+    Map<String, String> map = {};
+
+    map['product_name'] = response[0];
+    map['manufacturer_address'] = response[1].toString();
+    map['factory_name'] = response[2];
+    map['production_location'] = response[3];
+    map['production_date'] = response[4].toString();
+    return map;
   }
 
   Future<String> addComponent(String componentAddress) async {

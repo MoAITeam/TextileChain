@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'flutter_flow/flutter_flow_widgets.dart';
 import 'home.dart';
 import 'model/verify_product_model.dart';
 
@@ -28,10 +29,9 @@ class _VerifyWidgetState extends State<VerifyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //final qrcode = widget.code;
-    String qrcode = '0xc542911d7910ad76776ce298baa469a0d142fb3c';
+    final qrcode = widget.code;
     debugPrint(qrcode);
-    return ViewModelBuilder<VerifyProductModel>.nonReactive(
+    return ViewModelBuilder<VerifyProductModel>.reactive(
         viewModelBuilder: () => VerifyProductModel(),
         onModelReady: (model) async =>
             await model.verifyQRCode(context, qrcode),
@@ -222,7 +222,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 10, 0, 0),
                                           child: Text(
-                                            'jbsakjbcbasjcbjascjjcascjlal',
+                                            model.getDetails.values.toList()[0],
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -240,7 +240,7 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 10, 0, 0),
                                           child: Text(
-                                            'wvacfsdvcesascsadvaedsvcvsfd',
+                                            model.getDetails.toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -250,6 +250,39 @@ class _VerifyWidgetState extends State<VerifyWidget> {
                                           ),
                                         ),
                                       ),
+
+                                      // elimina giu
+                                      Container(
+                                        child: FFButtonWidget(
+                                          onPressed: () {
+                                            print(model);
+                                          },
+                                          text: 'Add',
+                                          options: FFButtonOptions(
+                                            width: 200,
+                                            height: 50,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .subtitle2
+                                                    .override(
+                                                      fontFamily: 'Outfit',
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                        ),
+                                      )
+
+                                      //elimina su
                                     ],
                                   ),
                                 ],

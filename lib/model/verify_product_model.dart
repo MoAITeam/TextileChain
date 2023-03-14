@@ -18,9 +18,46 @@ class VerifyProductModel extends ChangeNotifier {
       serviceLocator<TextileWeb3Service>();
   final AuthService _authService = serviceLocator<AuthService>();
 
+  Map<String, String> _details;
+  Map<String, String> get getDetails => _details;
+
+  void showTextDialog(BuildContext context, bool isDismissible, String title,
+      String content, List<Widget> buttonList) {
+    showDialog(
+        barrierDismissible: isDismissible,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            ),
+            title: Text(title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.05,
+                    fontWeight: FontWeight.bold)),
+            content: Text(content,
+                style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.04)),
+            actions: buttonList,
+          );
+        });
+  }
+
+  void clearDetails() {
+    _details = null;
+  }
+
   Future<void> verifyQRCode(context, qrcode) async {
+    clearDetails();
     await _textileWeb3Service.setCurrentTextile(qrcode);
-    final contract = await _textileWeb3Service.verifyContract(qrcode);
-    print(contract);
+    print(_textileWeb3Service.currentT.address);
+    if (_textileWeb3Service.currentT.address != null) {
+      final details = await _textileWeb3Service.verifyContract(qrcode);
+      _details = details;
+    } else {
+      showTextDialog(context, true, 'Alert',
+          'Cannot load the contract, the product scanned could be fake.', null);
+    }
   }
 }
