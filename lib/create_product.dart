@@ -129,7 +129,12 @@ class _CreateProductWidgetState extends State<CreateProductWidget> {
                                       ),
                                     ),
                                     FlutterFlowDropDown(
-                                      options: ['Option 1'],
+                                      options: [
+                                        'trousers',
+                                        'coat',
+                                        't-shirt',
+                                        'sweatshirt'
+                                      ],
                                       onChanged: (val) =>
                                           setState(() => dropDownGarment = val),
                                       width: 180,

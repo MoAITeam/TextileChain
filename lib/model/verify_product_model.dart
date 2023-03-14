@@ -63,10 +63,11 @@ class VerifyProductModel extends ChangeNotifier {
     if (_textileWeb3Service.currentT.address != null) {
       final details = await _textileWeb3Service.verifyContract(qrcode);
       _details = details;
+      setBusy(false);
     } else {
       showTextDialog(context, true, 'Alert',
           'Cannot load the contract, the product scanned could be fake.', null);
+      setBusy(false);
     }
-    setBusy(false);
   }
 }
