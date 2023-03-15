@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:html';
+
 import 'add_textile.dart';
 import 'create_product.dart';
 import 'verify.dart';
@@ -152,12 +155,34 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             20, 20, 20, 20),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      AddTextileWidget()),
-                                            );
+                                            !model.isUserLogged
+                                                ? showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                            "User not logged in"),
+                                                        content: Text(
+                                                            "You can not use this function wihtout being logged. Please log in."),
+                                                        actions: [
+                                                          TextButton(
+                                                            child: Text("OK"),
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    context),
+                                                          ),
+                                                        ],
+                                                      );
+                                                      ;
+                                                    },
+                                                  )
+                                                : await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            AddTextileWidget()),
+                                                  );
                                           },
                                           text: 'Add',
                                           options: FFButtonOptions(
@@ -189,13 +214,35 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             0, 24, 0, 0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CreateProductWidget(),
-                                              ),
-                                            );
+                                            !model.isUserLogged
+                                                ? showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                            "User not logged in"),
+                                                        content: Text(
+                                                            "You can not use this function wihtout being logged. Please log in."),
+                                                        actions: [
+                                                          TextButton(
+                                                            child: Text("OK"),
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    context),
+                                                          ),
+                                                        ],
+                                                      );
+                                                      ;
+                                                    },
+                                                  )
+                                                : await Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          CreateProductWidget(),
+                                                    ),
+                                                  );
                                           },
                                           text: 'Create',
                                           options: FFButtonOptions(

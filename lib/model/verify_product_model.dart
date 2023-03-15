@@ -1,3 +1,4 @@
+import 'package:codewords/home.dart';
 import 'package:codewords/service/auth_service.dart';
 import 'package:codewords/service/textile_web3_service.dart';
 import 'package:codewords/setup/locator.dart';
@@ -19,6 +20,8 @@ class VerifyProductModel extends ChangeNotifier {
   final AuthService _authService = serviceLocator<AuthService>();
   bool _busy = false;
   bool get busy => _busy;
+  bool _isFake = null;
+  bool get isFake => _isFake;
 
   Map<String, String> _details;
   Map<String, String> get getDetails => _details;
@@ -58,16 +61,26 @@ class VerifyProductModel extends ChangeNotifier {
   Future<void> verifyQRCode(context, qrcode) async {
     setBusy(true);
     clearDetails();
-    await _textileWeb3Service.setCurrentTextile(qrcode);
-    print(_textileWeb3Service.currentT.address);
-    if (_textileWeb3Service.currentT.address != null) {
+    var ver = await _textileWeb3Service.setCurrentTextile(qrcode);
+    _isFake = (ver == null) ? true : false;
+    if (!_isFake) {
       final details = await _textileWeb3Service.verifyContract(qrcode);
       _details = details;
       setBusy(false);
     } else {
-      showTextDialog(context, true, 'Alert',
-          'Cannot load the contract, the product scanned could be fake.', null);
       setBusy(false);
+      showTextDialog(context, true, 'Alert',
+          'Cannot load the contract, the product scanned could be fake.', [
+        TextButton(
+          child: Text("OK"),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeWidget(),
+            ),
+          ),
+        ),
+      ]);
     }
   }
 }

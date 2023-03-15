@@ -24,13 +24,14 @@ class TextileWeb3Service {
         await _web3service.loadContract(factoryContractName, factoryAddress);
   }
 
-  Future<void> setCurrentTextile(String productAddress) async {
+  Future<DeployedContract> setCurrentTextile(String productAddress) async {
     try {
       _currentT =
           await _web3service.loadContract(productContractName, productAddress);
-      print(currentT);
+      return _currentT;
     } catch (e) {
       print('cant load contract');
+      return null;
     }
   }
 
