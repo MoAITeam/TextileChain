@@ -69,7 +69,6 @@ class MyApp extends StatelessWidget {
       home: HomeWidget(),
       routes: {
         '/createProduct': (context) => const CreateProductWidget(),
-        '/verify': (context) => const VerifyWidget(),
       },
     );
   }
