@@ -71,7 +71,8 @@ class _AddTextileWidgetState extends State<AddTextileWidget> {
                 centerTitle: false,
                 elevation: 2,
               ),
-              body: SafeArea(
+              body: SingleChildScrollView(child: 
+              SafeArea(
                 child: GestureDetector(
                   onTap: () =>
                       FocusScope.of(context).requestFocus(_unfocusNode),
@@ -433,6 +434,7 @@ class _AddTextileWidgetState extends State<AddTextileWidget> {
                     ],
                   ),
                 ),
+              ),
               ),
             ));
   }

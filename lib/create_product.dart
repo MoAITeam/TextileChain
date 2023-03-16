@@ -74,7 +74,8 @@ class _CreateProductWidgetState extends State<CreateProductWidget> {
                 centerTitle: false,
                 elevation: 2,
               ),
-              body: SafeArea(
+              body: SingleChildScrollView(child:
+              SafeArea(
                 child: GestureDetector(
                   onTap: () =>
                       FocusScope.of(context).requestFocus(_unfocusNode),
@@ -421,6 +422,7 @@ class _CreateProductWidgetState extends State<CreateProductWidget> {
                     ],
                   ),
                 ),
+              ),
               ),
             ));
   }

@@ -80,17 +80,6 @@ class VerifyWidget extends StatelessWidget {
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Image.network(
-                                    '../assets/images/appbar_up.png',
-                                    width: MediaQuery.of(context).size.width,
-                                    height: 56,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -145,8 +134,8 @@ class VerifyWidget extends StatelessWidget {
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
-                                        crossAxisSpacing: 10,
-                                        mainAxisSpacing: 10,
+                                        crossAxisSpacing: 1,
+                                        mainAxisSpacing: 1,
                                         childAspectRatio: 1,
                                       ),
                                       shrinkWrap: true,
@@ -158,19 +147,19 @@ class VerifyWidget extends StatelessWidget {
                                           children: [
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .secondaryBackground),
+                                                        .primaryBackground),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 0),
+                                                    .fromSTEB(0, 0, 0, 0),
                                                 child: Text(
                                                   'Product name:',
                                                   textAlign: TextAlign.end,
@@ -178,8 +167,9 @@ class VerifyWidget extends StatelessWidget {
                                                           context)
                                                       .bodyText1
                                                       .override(
+                                                        color: FlutterFlowTheme.of(context).primaryColor,
                                                         fontFamily: 'Outfit',
-                                                        fontSize: 18,
+                                                        fontSize: 17,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -188,15 +178,15 @@ class VerifyWidget extends StatelessWidget {
                                             ),
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 0),
+                                                    .fromSTEB(0, 0, 0, 0),
                                                 child: Text(
                                                   'Factory name: ',
                                                   textAlign: TextAlign.end,
@@ -204,8 +194,9 @@ class VerifyWidget extends StatelessWidget {
                                                           context)
                                                       .bodyText1
                                                       .override(
+                                                        color: FlutterFlowTheme.of(context).primaryColor,
                                                         fontFamily: 'Outfit',
-                                                        fontSize: 18,
+                                                        fontSize: 17,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -214,15 +205,15 @@ class VerifyWidget extends StatelessWidget {
                                             ),
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 0),
+                                                    .fromSTEB(0, 0, 0, 0),
                                                 child: Text(
                                                   'Production location: ',
                                                   textAlign: TextAlign.end,
@@ -230,8 +221,9 @@ class VerifyWidget extends StatelessWidget {
                                                           context)
                                                       .bodyText1
                                                       .override(
+                                                        color: FlutterFlowTheme.of(context).primaryColor,
                                                         fontFamily: 'Outfit',
-                                                        fontSize: 18,
+                                                        fontSize: 17,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -240,15 +232,15 @@ class VerifyWidget extends StatelessWidget {
                                             ),
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 0),
+                                                    .fromSTEB(0, 0, 0, 0),
                                                 child: Text(
                                                   'Production date:',
                                                   textAlign: TextAlign.end,
@@ -256,8 +248,9 @@ class VerifyWidget extends StatelessWidget {
                                                           context)
                                                       .bodyText1
                                                       .override(
+                                                        color: FlutterFlowTheme.of(context).primaryColor,
                                                         fontFamily: 'Outfit',
-                                                        fontSize: 18,
+                                                        fontSize: 17,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                       ),
@@ -272,78 +265,98 @@ class VerifyWidget extends StatelessWidget {
                                           children: [
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 10, 0, 0),
+                                                      .fromSTEB(0, 0, 0, 0),
                                                   child: Text(
                                                     model.getDetails.values
                                                         .toList()[0],
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1,
+                                                        .bodyText1.override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                   )),
                                             ),
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 10, 0, 0),
+                                                      .fromSTEB(0, 0, 0, 0),
                                                   child: Text(
                                                     model.getDetails.values
                                                         .toList()[1],
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1,
+                                                        .bodyText1.override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                   )),
                                             ),
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 10, 0, 0),
+                                                      .fromSTEB(0, 0, 0, 0),
                                                   child: Text(
                                                     model.getDetails.values
                                                         .toList()[3],
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1,
+                                                        .bodyText1.override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                   )),
                                             ),
                                             Container(
                                               width: 100,
-                                              height: 100,
+                                              height: 40,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                        .primaryBackground,
                                               ),
                                               child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 10, 0, 0),
+                                                      .fromSTEB(0, 0, 0, 0),
                                                   child: Text(
                                                     model.getDetails.values
                                                         .toList()[4],
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1,
+                                                        .bodyText1.override(
+                                                        fontFamily: 'Outfit',
+                                                        fontSize: 17,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                   )),
                                             ),
                                           ],

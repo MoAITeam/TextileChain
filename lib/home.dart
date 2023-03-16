@@ -39,12 +39,12 @@ class _HomeWidgetState extends State<HomeWidget> {
         viewModelBuilder: () => HomeViewModel(),
         builder: (context, model, child) => Scaffold(
               key: scaffoldKey,
-              backgroundColor: Colors.lightGreen,
+              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               floatingActionButton: FloatingActionButton.extended(
                 onPressed: () {
                   loginForm(context, model);
                 },
-                backgroundColor: Colors.amber,
+                backgroundColor: FlutterFlowTheme.of(context).primaryColor,
                 icon: Icon(
                   Icons.vpn_key_rounded,
                 ),
@@ -91,6 +91,53 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 30),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          FlutterFlowDropDown(
+                                            hintText: "Select Role",
+                                            //initialOption:
+                                            //    (model.userState == null)
+                                            //        ? 'User'
+                                            //        : model.userState,
+                                            options: ['User', 'Admin'],
+                                            onChanged: (val) => {
+                                              model.setUserStateDropDown(
+                                                  context, val),
+                                              dropDownValue = val,
+                                              setState(() {
+                                                dropDownValue = val;
+                                              })
+                                            },
+                                            width: 180,
+                                            height: 50,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1
+                                                    .override(
+                                                      fontFamily: 'Outfit',
+                                                      color: Colors.black,
+                                                    ),
+                                            fillColor: Colors.white,
+                                            elevation: 2,
+                                            borderColor: Colors.transparent,
+                                            borderWidth: 0,
+                                            borderRadius: 0,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 4, 12, 4),
+                                            hidesUnderline: true,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20, 20, 20, 20),
                                       child: FFButtonWidget(
                                         onPressed: () async {
@@ -127,11 +174,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 ),
                                           );
                                         },
-                                        text: 'Verify',
+                                        text: 'Verify Product',
                                         options: FFButtonOptions(
                                           width: 200,
                                           height: 50,
-                                          color: Colors.pink,
+                                          color: FlutterFlowTheme.of(context).tertiaryColor,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .subtitle2
@@ -184,7 +231,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             AddTextileWidget()),
                                                   );
                                           },
-                                          text: 'Add',
+                                          text: 'Add Fabric',
                                           options: FFButtonOptions(
                                             width: 200,
                                             height: 50,
@@ -244,7 +291,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   );
                                           },
-                                          text: 'Create',
+                                          text: 'Create Product',
                                           options: FFButtonOptions(
                                             width: 200,
                                             height: 50,
@@ -269,53 +316,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           ),
                                         ),
                                       ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 44, 0, 30),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          FlutterFlowDropDown(
-                                            initialOption:
-                                                (model.userState == null)
-                                                    ? 'User'
-                                                    : model.userState,
-                                            options: ['User', 'Admin'],
-                                            onChanged: (val) => {
-                                              model.setUserStateDropDown(
-                                                  context, val),
-                                              dropDownValue = val,
-                                              setState(() {
-                                                dropDownValue = val;
-                                              })
-                                            },
-                                            width: 180,
-                                            height: 50,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Outfit',
-                                                      color: Colors.black,
-                                                    ),
-                                            hintText: 'Please select...',
-                                            fillColor: Colors.white,
-                                            elevation: 2,
-                                            borderColor: Colors.transparent,
-                                            borderWidth: 0,
-                                            borderRadius: 0,
-                                            margin:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 4, 12, 4),
-                                            hidesUnderline: true,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    
                                   ],
                                 ),
                               ),
