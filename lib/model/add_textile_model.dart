@@ -10,6 +10,7 @@ import 'package:get_it/get_it.dart';
 
 import '../service/persistence_service.dart';
 import '../service/textile_firebase_service.dart';
+import 'dart:math';
 
 class AddTextileModel extends ChangeNotifier {
   final TextileFirebaseService _textileFirebaseService =
@@ -17,6 +18,13 @@ class AddTextileModel extends ChangeNotifier {
   final TextileWeb3Service _textileWeb3Service =
       serviceLocator<TextileWeb3Service>();
   final AuthService _authService = serviceLocator<AuthService>();
+  bool _busy = false;
+  bool get busy => _busy;
+
+  void setBusy(bool value) {
+    _busy = value;
+    notifyListeners();
+  }
 
   void showTextDialog(BuildContext context, bool isDismissible, String title,
       String content, List<Widget> buttonList) {
@@ -47,6 +55,7 @@ class AddTextileModel extends ChangeNotifier {
       String factory_location,
       String textile_name,
       BuildContext context) async {
+    setBusy(true);
     if (factory_date == "" ||
         factory_location == "" ||
         textile_name == "" ||
@@ -54,11 +63,13 @@ class AddTextileModel extends ChangeNotifier {
       showTextDialog(
           context, true, 'Alert', 'One of the fields is empty', null);
     } else {
-      var address = await _textileWeb3Service.createProduct(
-          textile_name, factory_name, factory_location, factory_date);
+      var verification_id = Random().nextInt(10000000).toString();
+      var address = await _textileWeb3Service.createProduct(textile_name,
+          factory_name, factory_location, factory_date, verification_id);
 
       await _textileFirebaseService.addProductToUser(
           _authService.userAddress.toString(), address);
+      setBusy(false);
 
       showTextDialog(context, false, 'Success!',
           'Your product was added to the blockchain', [

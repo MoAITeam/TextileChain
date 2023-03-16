@@ -300,7 +300,7 @@ class VerifyWidget extends StatelessWidget {
                                                       .fromSTEB(0, 0, 0, 0),
                                                   child: Text(
                                                     model.getDetails.values
-                                                        .toList()[1],
+                                                        .toList()[2],
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1.override(

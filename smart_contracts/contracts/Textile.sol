@@ -9,6 +9,7 @@ contract Textile {
 	string private factory_location;
 	string private factory_date;
 	string private product_name;
+	string private verification_id;
 
 	bool private is_component = false;
 	bool private is_init = false;
@@ -47,12 +48,13 @@ contract Textile {
 
 	event productExchanged(address previous_address, address current_address);
 
-    function init(address _current_owner, string _product_name, string _factory_name, string _factory_location, string _factory_date) external  {
+    function init(address _current_owner, string _product_name, string _factory_name, string _factory_location, string _factory_date, string _verification_id) external  {
         product_name = _product_name;
 		current_owner = _current_owner;
 		factory_name = _factory_name;
 		factory_location = _factory_location;
 		factory_date = _factory_date;
+		verification_id = _verification_id;
 
         is_init = true; 
     }

@@ -1,3 +1,4 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:stacked/stacked.dart';
 
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -387,12 +388,20 @@ class _AddTextileWidgetState extends State<AddTextileWidget> {
                                           40, 40, 40, 40),
                                       child: FFButtonWidget(
                                         onPressed: () {
-                                          model.createTextile(
-                                              textController1.text,
-                                              datePicked.toString(),
-                                              textController3.text,
-                                              dropDownValue,
-                                              context);
+                                          model.busy
+                                              ? Container(
+                                                  color: Colors.white,
+                                                  child: Center(
+                                                      child: SpinKitFadingCube(
+                                                          color: Colors
+                                                              .lightGreen[100],
+                                                          size: 50.0)))
+                                              : model.createTextile(
+                                                  textController1.text,
+                                                  datePicked.toString(),
+                                                  textController3.text,
+                                                  dropDownValue,
+                                                  context);
                                         },
                                         text:
                                             'Insert textile item in blockchain',
