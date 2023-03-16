@@ -20,7 +20,9 @@ class VerifyProductModel extends ChangeNotifier {
   final AuthService _authService = serviceLocator<AuthService>();
   bool _busy = false;
   bool get busy => _busy;
-  bool _isFake = null;
+  bool _isEthAddress;
+  bool get isEthAddress => _isEthAddress;
+  bool _isFake;
   bool get isFake => _isFake;
 
   Map<String, String> _details;
@@ -58,29 +60,60 @@ class VerifyProductModel extends ChangeNotifier {
     _details = null;
   }
 
+  void clearIsFake() {
+    _isFake = null;
+  }
+
+  void clearIsEthAddress() {
+    _isEthAddress = null;
+  }
+
   Future<void> verifyQRCode(context, qrcode) async {
     setBusy(true);
     clearDetails();
+    clearIsEthAddress();
+    clearIsFake();
     var ver = await _textileWeb3Service.setCurrentTextile(qrcode);
-    _isFake = (ver == null) ? true : false;
-    if (!_isFake) {
-      final details = await _textileWeb3Service.verifyContract(qrcode);
-      _details = details;
+    _isEthAddress = (ver == null) ? false : true;
+    if (_isEthAddress) {
+      _details = await _textileWeb3Service.verifyContract(qrcode);
+      if (_details == null) {
+        _isFake = true;
+        showTextDialog(context, true, 'Alert',
+            'Cannot load the contract, the product scanned could be fake.', [
+          TextButton(
+            child: Text("OK"),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeWidget(),
+              ),
+            ),
+          ),
+        ]);
+      } else {
+        _isFake = false;
+      }
+
       setBusy(false);
     } else {
       setBusy(false);
-      showTextDialog(context, true, 'Alert',
-          'Cannot load the contract, the product scanned could be fake.', [
-        TextButton(
-          child: Text("OK"),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeWidget(),
+      showTextDialog(
+          context,
+          true,
+          'Alert',
+          'Cannot load the contract, the qr code scanned is not an ethereum address.',
+          [
+            TextButton(
+              child: Text("OK"),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeWidget(),
+                ),
+              ),
             ),
-          ),
-        ),
-      ]);
+          ]);
     }
   }
 }

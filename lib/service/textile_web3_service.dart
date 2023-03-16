@@ -36,16 +36,20 @@ class TextileWeb3Service {
   }
 
   Future<Map<String, String>> verifyContract(String address) async {
-    List<dynamic> response =
-        await _web3service.queryContract(_currentT, "getProductDetails", []);
-    Map<String, String> map = {};
+    try {
+      List<dynamic> response =
+          await _web3service.queryContract(_currentT, "getProductDetails", []);
+      Map<String, String> map = {};
 
-    map['product_name'] = response[0];
-    map['manufacturer_address'] = response[1].toString();
-    map['factory_name'] = response[2];
-    map['production_location'] = response[3];
-    map['production_date'] = response[4].toString();
-    return map;
+      map['product_name'] = response[0];
+      map['manufacturer_address'] = response[1].toString();
+      map['factory_name'] = response[2];
+      map['production_location'] = response[3];
+      map['production_date'] = response[4].toString();
+      return map;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<String> addComponent(String componentAddress) async {
