@@ -25,12 +25,6 @@ class TextileFirebaseService {
     }
   }
 
-  Future<void> removeProductFromUser(
-      String userAddress, List<String> elementsAddress) async {
-    await _persistenceService.deleteElementsFromDocumentList(
-        'users', userAddress, 'products', elementsAddress);
-  }
-
   Future<List<String>> getUserProducts(String userAddress) async {
     var snapshot =
         await _persistenceService.getElementsFromDocument('users', userAddress);

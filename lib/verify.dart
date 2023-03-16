@@ -90,11 +90,7 @@ class VerifyWidget extends StatelessWidget {
                                           Container(
                                             width: 390,
                                             height: 354,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
+                                            decoration: BoxDecoration(),
                                             child: Image.asset(
                                               'assets/images/' +
                                                   model.getDetails.values

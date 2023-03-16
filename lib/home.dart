@@ -141,6 +141,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           20, 20, 20, 20),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          MobileScannerController scannerController;
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -148,6 +149,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     //NavBarPage(initialPage: 'QR_track'),
                                                     MobileScanner(
                                                       allowDuplicates: false,
+                                                      controller: scannerController = MobileScannerController(),
                                                       onDetect:
                                                           ((barcode, args) {
                                                         if (barcode.rawValue ==
@@ -168,6 +170,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           code:
                                                                               code)));
                                                         }
+                                                        scannerController..stop()..dispose();
                                                       }),
                                                     )
                                                 //VerifyWidget(),

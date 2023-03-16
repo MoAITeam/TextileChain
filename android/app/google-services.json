@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:788446035668:android:69e9fc8730d955e58cc541",
         "android_client_info": {
-          "package_name": "io.flutterflow.codewords"
+          "package_name": "io.flutterflow.textilechain"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "788446035668-1gtfsj3pt80tef3qb4822n9t3cfkurd6.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "io.flutterflow.codewords"
+                "bundle_id": "io.flutterflow.textilechain"
               }
             }
           ]

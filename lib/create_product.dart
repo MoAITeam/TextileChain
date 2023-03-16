@@ -1,4 +1,4 @@
-import 'package:codewords/model/create_product_model.dart';
+import 'package:textilechain/model/create_product_model.dart';
 import 'package:stacked/stacked.dart';
 
 import '/flutter_flow/flutter_flow_drop_down.dart';

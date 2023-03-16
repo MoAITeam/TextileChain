@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:codewords/service/auth_service.dart';
-import 'package:codewords/service/textile_web3_service.dart';
-import 'package:codewords/setup/locator.dart';
+import 'package:textilechain/service/auth_service.dart';
+import 'package:textilechain/service/textile_web3_service.dart';
+import 'package:textilechain/setup/locator.dart';
 import 'package:flutter/material.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../service/textile_firebase_service.dart';

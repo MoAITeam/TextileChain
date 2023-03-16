@@ -70,6 +70,6 @@ class DefaultFirebaseOptions {
     projectId: 'textile-tracking',
     storageBucket: 'textile-tracking.appspot.com',
     iosClientId: '788446035668-1gtfsj3pt80tef3qb4822n9t3cfkurd6.apps.googleusercontent.com',
-    iosBundleId: 'io.flutterflow.codewords',
+    iosBundleId: 'io.flutterflow.textilechain',
   );
 }

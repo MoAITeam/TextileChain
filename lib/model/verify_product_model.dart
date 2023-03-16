@@ -1,7 +1,7 @@
-import 'package:codewords/home.dart';
-import 'package:codewords/service/auth_service.dart';
-import 'package:codewords/service/textile_web3_service.dart';
-import 'package:codewords/setup/locator.dart';
+import 'package:textilechain/home.dart';
+import 'package:textilechain/service/auth_service.dart';
+import 'package:textilechain/service/textile_web3_service.dart';
+import 'package:textilechain/setup/locator.dart';
 import 'package:web3dart/credentials.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';

@@ -1,6 +1,6 @@
-import 'package:codewords/service/auth_service.dart';
-import 'package:codewords/service/persistence_service.dart';
-import 'package:codewords/service/textile_web3_service.dart';
+import 'package:textilechain/service/auth_service.dart';
+import 'package:textilechain/service/persistence_service.dart';
+import 'package:textilechain/service/textile_web3_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'create_product.dart';
@@ -24,15 +24,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
-  Reference ref =
-      FirebaseStorage.instance.ref().child('/put-string-example.txt');
-  ref.putString(
-    "ciao",
-    metadata: SettableMetadata(
-      contentLanguage: 'en',
-      customMetadata: <String, String>{'example': 'putString'},
-    ),
   );
   setupLocator();
   await serviceLocator.allReady();

@@ -1,4 +1,4 @@
-import 'package:codewords/setup/locator.dart';
+import 'package:textilechain/setup/locator.dart';
 import 'package:web3dart/credentials.dart';
 
 import '../service/auth_service.dart';
