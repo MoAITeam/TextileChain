@@ -61,10 +61,14 @@ class TextileWeb3Service {
     return await _web3service.submitTransaction(_currentT, "finalProduct", []);
   }
 
-  Future<String> createProduct(String name, String factoryName,
-      String factoryLocation, String factoryDate) async {
+  Future<String> createProduct(
+      String name,
+      String factoryName,
+      String factoryLocation,
+      String factoryDate,
+      String verification_id) async {
     var hash = await _web3service.submitTransaction(_factoryT, 'createTextile',
-        [name, factoryName, factoryLocation, factoryDate]);
+        [name, factoryName, factoryLocation, factoryDate, verification_id]);
     var address = await _web3service.extractEventDataFromReceipt(
         _factoryT, 'TextileCreated', hash, 0);
     return address[0].toString();

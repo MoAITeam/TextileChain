@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:codewords/service/auth_service.dart';
 import 'package:codewords/service/textile_web3_service.dart';
 import 'package:codewords/setup/locator.dart';
@@ -81,8 +83,9 @@ class CreateProductModel extends ChangeNotifier {
       showTextDialog(
           context, true, 'Alert', 'One of the fields is empty', null);
     } else {
+      var verification_id = Random().nextInt(10000000).toString();
       var address = await _textileWeb3Service.createProduct(
-          garment, "Placeholder tm.", location, date);
+          garment, "Placeholder tm.", location, date, verification_id);
 
       await _textileFirebaseService.addProductToUser(
           _authService.userAddress.toString(), address);
@@ -103,15 +106,17 @@ class CreateProductModel extends ChangeNotifier {
       final qrCode = qrValidationResult.qrCode;
       //QrCode qr = QrCode(4, QrErrorCorrectLevel.L)..addData(address);
       final painter = QrPainter.withQr(
-          qr: qrCode,
-          color: Color.fromARGB(255, 0, 0, 0),
-          emptyColor: Color.fromARGB(255, 255, 255, 255),
-          gapless: true,
-          embeddedImageStyle: null,
-          embeddedImage: null,);
-      final picData = await painter.toImageData(2048, format: ImageByteFormat.png);
+        qr: qrCode,
+        color: Color.fromARGB(255, 0, 0, 0),
+        emptyColor: Color.fromARGB(255, 255, 255, 255),
+        gapless: true,
+        embeddedImageStyle: null,
+        embeddedImage: null,
+      );
+      final picData =
+          await painter.toImageData(2048, format: ImageByteFormat.png);
       String base64String = base64.encode(picData.buffer.asUint8List());
-      _textileFirebaseService.sendQRCodeToStorage(base64String,address);
+      _textileFirebaseService.sendQRCodeToStorage(base64String, address);
 
       showTextDialog(context, false, 'Success!',
           'Your product was added to the blockchain', [
