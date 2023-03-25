@@ -20,33 +20,21 @@ contract Textile {
 		is_init = true;
 	}
 
-	modifier notInit(){
-		require(!is_init,'Product shoul be initialized 0');
-		_;
-	}
-
 	modifier onlyOwner(){
         require(msg.sender == current_owner, "you are not the owner of this contract");
         _;
     }
 
 	modifier isFinalProduct(){
-		require(is_final_product,'Product shoul be initialized 1');
+		require(is_final_product,'Product shoul be a garment');
 		_;
 	}
 
 	modifier isNotFinalProduct(){
-		require(!is_final_product,'Product should be initialized 2');
+		require(!is_final_product,'Product should not be a garment');
 		_;
 	}
 
-
-	modifier isNotConsumed(){
-		require(!is_component,'Product shoul be initialized 3');
-		_;
-	}
-
-	event productExchanged(address previous_address, address current_address);
 
     function init(address _current_owner, string _product_name, string _factory_name, string _factory_location, string _factory_date, string _verification_id) external  {
         product_name = _product_name;
@@ -58,15 +46,6 @@ contract Textile {
 
         is_init = true; 
     }
-
-	function productExchange() external onlyOwner isNotConsumed {
-
-		address old_address = current_owner;
-		current_owner = msg.sender;
-
-		emit productExchanged(old_address, current_owner);
-
-	}
 
 	function getIsFinalProduct() external view returns(bool final_product){
 		return is_final_product;
@@ -82,10 +61,7 @@ contract Textile {
 		textile_components.push(component);
 	}
 
-	function consumeProduct() external onlyOwner isNotConsumed {
-		
-		is_component = true;
-	}
+
 
 	function finalProduct() external onlyOwner{
 
@@ -96,7 +72,7 @@ contract Textile {
         return (product_name,manufacturer,factory_name,factory_location,factory_date);
     }
 
-	    function getManufacturer() external view returns(address, string memory){
+	function getManufacturer() external view returns(address, string memory){
         return (manufacturer, factory_name);
     }
 

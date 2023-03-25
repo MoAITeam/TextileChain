@@ -86,11 +86,6 @@ class TextileWeb3Service {
     return await _web3service.submitTransaction(_currentT, "finalProduct", []);
   }
 
-  Future<String> consumeProduct() async {
-    return await _web3service
-        .submitTransaction(_currentT, "consumeProduct", []);
-  }
-
   Future<String> productExchange() async {
     return await _web3service
         .submitTransaction(_currentT, "productExchange", []);
